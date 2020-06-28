@@ -15,7 +15,7 @@ class CircleButton extends React.Component {
     fontLoaded: false,
   };
 
-  async UNSAFE_componentWillMount() {
+  async componentDidMount() {
     await Font.loadAsync({
       FontAwesome: fontAwesome,
     });
