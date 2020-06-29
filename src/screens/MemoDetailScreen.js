@@ -3,34 +3,38 @@ import { StyleSheet, View, Text } from 'react-native';
 
 import CircleButton from '../elements/CircleButton';
 
+const dateString = (date) => {
+  if (date == null) { return ''; }
+  const dateObject = date.toDate();
+  return dateObject.toISOString().split('T')[0];
+};
+
 class MemoDetailScreen extends React.Component {
   state = {
     memo: {},
   }
 
 // "componentDidMount" will cause TypeError even if I check null as below
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     const { params } = this.props.navigation.state;
     this.setState({ memo: params.memo });
   }
 
-  dateString(date) {
-    console.log(date.toDate().toISOString());
-    const str = date.toDate().toISOString();
-    return str.split('T')[0];
+  returnMemo(memo) {
+    this.setState({ memo });
   }
 
   render() {
     const { memo } = this.state;
-    if (memo == null) { return null; }
+//   if (memo == null) { return null; }
 
     return (
       <View style={styles.container}>
         <View>
           <View style={styles.memoHeader}>
             <View>
-              <Text style={styles.memoHeaderTitle}>{memo.body.substring(0, 10)}</Text>
-              <Text style={styles.memoHeaderDate}>{this.dateString(memo.createdOn)}</Text>
+              <Text style={styles.memoHeaderTitle}>{memo.body ? memo.body.substring(0, 20) : ''}</Text>
+              <Text style={styles.memoHeaderDate}>{dateString(memo.createdOn)}</Text>
             </View>
           </View>
         </View>
@@ -66,7 +70,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   memoHeaderDate: {
-    fontSize: 10,
+    fontSize: 14,
     color: '#fff',
   },
   memoContents: {

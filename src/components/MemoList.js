@@ -12,7 +12,7 @@ class MemoList extends React.Component {
     return (
       <TouchableHighlight onPress={() => { this.props.navigation.navigate('MemoDetail', { memo: item }); }}>
         <View style={styles.memoListItem}>
-          <Text style={styles.memoTitle}>{item.body.substring(0, 10)}</Text>
+          <Text style={styles.memoTitle}>{item.body.substring(0, 20)}</Text>
           <Text style={styles.memoDate}>{dateString(item.createdOn)}</Text>
         </View>
       </TouchableHighlight>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   memoDate: {
-    fontSize: 12,
+    fontSize: 14,
     color: '#a2a2a2',
   },
 });
