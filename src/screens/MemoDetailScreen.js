@@ -14,7 +14,6 @@ class MemoDetailScreen extends React.Component {
     memo: {},
   }
 
-// "componentDidMount" will cause TypeError even if I check null as below
   componentDidMount() {
     const { params } = this.props.navigation.state;
     this.setState({ memo: params.memo });
@@ -26,8 +25,6 @@ class MemoDetailScreen extends React.Component {
 
   render() {
     const { memo } = this.state;
-//   if (memo == null) { return null; }
-
     return (
       <View style={styles.container}>
         <View>
@@ -45,7 +42,12 @@ class MemoDetailScreen extends React.Component {
           </Text>
         </View>
 
-        <CircleButton name="pencil" color="white" style={styles.editButton} onPress={() => this.props.navigation.navigate('MemoEdit')} />
+        <CircleButton
+          name="pencil"
+          color="white"
+          style={styles.editButton}
+          onPress={() => this.props.navigation.navigate('MemoEdit', { memo, returnMemo: this.returnMemo.bind(this) })}
+        />
       </View>
     );
   }
