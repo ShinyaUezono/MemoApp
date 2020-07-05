@@ -1,16 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import firebase from 'firebase';
-// import 'firebase/firestore';
 
 import MemoList from '../components/MemoList';
 import CircleButton from '../elements/CircleButton';
-
-// const firebase = require("firebase");
-
-// eslint-disable-next-line
-// require("firebase/firestore");
-
 
 class MemoListScreen extends React.Component {
   state = {
@@ -28,19 +21,6 @@ class MemoListScreen extends React.Component {
         });
         this.setState({ memoList });
       });
-    /*
-      .get()
-      .then((snapshot) => {
-        const memoList = [];
-        snapshot.forEach((doc) => {
-          memoList.push({ ...doc.data(), key: doc.id });
-        });
-        this.setState({ memoList });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    */
   }
 
   handlePress() {
@@ -48,9 +28,6 @@ class MemoListScreen extends React.Component {
   }
 
   render() {
-//    const { memo } = this.state;
-//    if (memo == null) { return null; }
-
     return (
       <View style={styles.container}>
         <MemoList memoList={this.state.memoList} navigation={this.props.navigation} />
